@@ -6,7 +6,7 @@ CALL_PATH="$(pwd)"
 FORCE_INSTALL=0;
 while [ $# -gt 0 ]; do
   case $1 in 
-    --update | -u | --force ) FORCE_INSTALL=1; shift; shift;;
+    --update | -u | --force ) FORCE_INSTALL=1; shift;;
     * ) shift;;
   esac
 done
@@ -25,6 +25,8 @@ fi
 if [ ${FORCE_INSTALL} -eq 1 ] || [ ! -e "${HOME}/.local/share/fonts/NF" ]; then
   FONTS_LIST="FiraCode FiraMono CodeNewRoman DejaVuSansMono DroidSansMono Go-Mono Gohu Hack Inconsolata InconsolataGo InconsolataLGC Iosevka JetBrainsMono LiberationMono Meslo Monoid RobotoMono SourceCodePro SpaceMono Terminus Ubuntu UbuntuMono"
 
+  echo "Installing Nerd Fonts..."
+  [ -e "./NF" ] && rm -Rf ./NF;
   mkdir NF;
 
   for FONT in ${FONTS_LIST}; do
